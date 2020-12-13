@@ -24,13 +24,11 @@ def cmd_args():
                         action='store_true',
                         default=False,
                         help='enable debug')
-    parser.add_argument('-n',
-                        '--name',
-                        action='store',
-                        dest='repro_name',
-                        #required=True,
-                        default='none',
-                        help='name used to distinguish the repro')
+    parser.add_argument('-l',
+                        '--list',
+                        action='store_true',
+                        default=False,
+                        help='List all address entries')
     parser.add_argument('-s',
                         '--slot',
                         type=int,
@@ -204,26 +202,28 @@ if __name__ == "__main__":
     UPDATE = OPT.map_update
     REMOVE = OPT.remove
     SCRIPT_NAME = sys.argv[0]
-
+    LIST = OPT.list
 
 
     MAP = XmasDict()
-    MAP.print_map()
+    if LIST:
+        MAP.print_map()
+
 
     if UPDATE:
         FAM_KEY = input('Enter key for family: ')
-        FAMILY_NAME = input('Enter family name for address: ')
+        FAMILY_NAME = input('Enter family name: ')
         #NAME_META = input('enter name meta: ')
         ADDY1 = input('Adress line 1 for: ')
         ADDY2 = input('Adress line 2 for: ')
         CITY = input('City: ')
         STATE = input('State: ')
         ZIP = input('zip code: ')
-
         MAP.update_xmas_map_dict(FAM_KEY, FAMILY_NAME, ADDY1, ADDY2, CITY, STATE, ZIP)
         MAP.save_current_xmas_map_dict_to_file()
         print('Saving xmas_dict...')
-        MAP.print_map()
+        #MAP.print_map()
+
 
     if REMOVE:
         FAMILY_NAME = input('Enter the family name you want to remove: ')
