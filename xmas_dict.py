@@ -212,7 +212,7 @@ if __name__ == "__main__":
 
     if UPDATE:
         FAM_KEY = input('Enter key for family: ')
-        FAMILY_NAME = input('Enter blank to exit or family name you want to modify: ')
+        FAMILY_NAME = input('Enter family name for address: ')
         #NAME_META = input('enter name meta: ')
         ADDY1 = input('Adress line 1 for: ')
         ADDY2 = input('Adress line 2 for: ')
