@@ -152,16 +152,16 @@ class XmasDict:
     def print_map(self):
         'print out current '
         #print('** Current Christmas List  **')
-        for k in sorted(self.loaded_xmas_map.keys(), reverse=True):
+        for k in sorted(self.loaded_xmas_map.keys(), reverse=False):
            m = self.loaded_xmas_map[k]
            print('** {} **\n'.format(k))
            print('{}'.format(m['family_name']))
            print('{}'.format(m['address1']))        
            if m['address2']:
                print('{}'.format(m['address2']))
-           print('{}'.format(m['city']))
-           print('{}'.format(m['state']))
-           print('{}'.format(m['zip_code']))
+           print('{}, {} {}'.format(m['city'], m['state'], m['zip_code']))
+           #print('{}'.format(m['state']))
+           #print('{}'.format(m['zip_code']))
            print('\n*** END {} ***\n\n'.format(k))
 
     # add key:val to /home/<USER>/.repro_slot_reset/xmas_map.dict
