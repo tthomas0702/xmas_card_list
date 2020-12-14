@@ -129,10 +129,6 @@ class XmasDict:
 
 
     def create_xmas_dict_file(self, new_dict={}):
-        '''
-        create a config dir and dict file in user dir to map current SR for slot
-        /home/<USER>/.repro_slot_reset/xmas_map.dict
-        '''
         xmas_map_dict = new_dict
         file_name = self.set_xmas_map_dict_file_location_var()
         # create dir if not exsts
@@ -153,20 +149,18 @@ class XmasDict:
         'print out current '
         #print('** Current Christmas List  **')
         for k in sorted(self.loaded_xmas_map.keys(), reverse=False):
-           m = self.loaded_xmas_map[k]
-           print('** {} **\n'.format(k))
-           print('{}'.format(m['family_name']))
-           print('{}'.format(m['address1']))        
-           if m['address2']:
-               print('{}'.format(m['address2']))
-           print('{}, {} {}'.format(m['city'], m['state'], m['zip_code']))
-           #print('{}'.format(m['state']))
-           #print('{}'.format(m['zip_code']))
-           print('\n*** END {} ***\n\n'.format(k))
+            m = self.loaded_xmas_map[k]
+            print('** {} **\n'.format(k))
+            print('{}'.format(m['family_name']))
+            print('{}'.format(m['address1']))
+            if m['address2']:
+                print('{}'.format(m['address2']))
+            print('{}, {} {}'.format(m['city'], m['state'], m['zip_code']))
+            print('\n*** END {} ***\n\n'.format(k))
 
-    # add key:val to /home/<USER>/.repro_slot_reset/xmas_map.dict
-    def update_xmas_map_dict(self, fam_key, family_name, address1, address2, city, state, zip_code ):
-        'update xmas_dict'
+
+    def update_xmas_map_dict(self, fam_key, family_name, address1, address2, city,
+                             state,zip_code ):
         self.loaded_xmas_map[fam_key] = {'family_name': family_name,
                                              'address1': address1,
                                              'address2': address2,
@@ -174,7 +168,9 @@ class XmasDict:
                                              'state': state,
                                              'zip_code': zip_code}
         self.save_current_xmas_map_dict_to_file()
+
         return self.loaded_xmas_map
+
 
     def save_current_xmas_map_dict_to_file(self):
         'save current xmas_dict to file'
@@ -182,6 +178,7 @@ class XmasDict:
         outfile = open(file_name, 'wb')
         pickle.dump(self.loaded_xmas_map, outfile)
         outfile.close()
+
 
     def delete_key_xmas_map_dict(self, key=None):
         'remove entry from the SR list'
@@ -213,7 +210,6 @@ if __name__ == "__main__":
     if UPDATE:
         FAM_KEY = input('Enter key for family: ')
         FAMILY_NAME = input('Enter family name: ')
-        #NAME_META = input('enter name meta: ')
         ADDY1 = input('Adress line 1 for: ')
         ADDY2 = input('Adress line 2 for: ')
         CITY = input('City: ')
@@ -222,7 +218,6 @@ if __name__ == "__main__":
         MAP.update_xmas_map_dict(FAM_KEY, FAMILY_NAME, ADDY1, ADDY2, CITY, STATE, ZIP)
         MAP.save_current_xmas_map_dict_to_file()
         print('Saving xmas_dict...')
-        #MAP.print_map()
 
 
     if REMOVE:
