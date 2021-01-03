@@ -6,3 +6,8 @@ Current functionality
   - add new address
   - remove address
   - list all addresses
+
+Improvments needed
+  - make a unique key for each entry
+  - make searchable
+  - make output easier to cut out
